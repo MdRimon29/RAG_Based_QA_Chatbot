@@ -18,7 +18,10 @@ def build_qa_chain(persist_dir="faiss_db"):
     """Build and return a QA chain using FAISS retriever."""
     embedding_model = get_embedding_model()
     retriever = get_retriever(persist_dir, embedding_model)
+
+    #using groq
     #llm = ChatGroq(model="openai/gpt-oss-120b", temperature=0)
+
     #using Huggingface
     hf_llm = HuggingFaceEndpoint(
         repo_id="moonshotai/Kimi-K2-Instruct",
@@ -66,24 +69,3 @@ def build_qa_chain(persist_dir="faiss_db"):
         chain_type_kwargs={"prompt": prompt},
         return_source_documents=False,
     )
-
-
-#==============================
-# # store
-# from langchain.chat_models import HuggingFaceChat
-# from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
-
-# # Load tokenizer and model
-# tokenizer = AutoTokenizer.from_pretrained("moonshotai/Kimi-K2-Instruct")
-# model = AutoModelForCausalLM.from_pretrained("moonshotai/Kimi-K2-Instruct")
-
-# # Create a pipeline
-# pipe = pipeline(
-#     "text-generation",
-#     model=model,
-#     tokenizer=tokenizer,
-#     max_length=1024
-# )
-
-# # Wrap in LangChain
-# llm = HuggingFaceChat(pipeline=pipe, temperature=0.6)
