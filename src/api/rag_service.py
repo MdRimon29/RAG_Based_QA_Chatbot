@@ -2,7 +2,7 @@ import os
 import uuid
 from typing import List, Tuple
 from langchain_community.vectorstores import FAISS
-from langchain.schema import Document
+from langchain_classic.schema import Document
 from src.ingest import load_pdf
 from src.splitter import split_documents
 from src.vectorstore import load_faiss, create_faiss, save_faiss
